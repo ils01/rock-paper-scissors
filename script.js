@@ -51,7 +51,7 @@ function playRound(playerSelection, computerSelection){
 
 function game(){
     for(let i = 0; i < 5; i++){
-        const playerSelection = prompt("Choose").toLocaleLowerCase();
+        const playerSelection = prompt("Choose", "Rock/Paper/Scissors").toLocaleLowerCase();
         const computerSelection = getComputerChoice();
         console.log(`Your choice: ${playerSelection}`);
         console.log(`Computer choice: ${computerSelection}`);
