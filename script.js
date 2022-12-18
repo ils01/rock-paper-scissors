@@ -1,3 +1,32 @@
+let userWins = 0;
+let compWins = 0;
+
+const score = document.createElement('p');
+score.innerText = `You: ${userWins}, AI: ${compWins}`;
+document.body.appendChild(score);
+
+const result = document.createElement('div');
+document.body.appendChild(result);
+
+document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('click', function(){
+        if(userWins !== 5 && compWins !== 5){
+            const playerSelection = button.innerText.toLowerCase();
+            const computerSelection = getComputerChoice();
+
+            result.innerText = `You: ${playerSelection}\nComputer: ${computerSelection}\n${playRound(playerSelection, computerSelection)}\n`;
+            score.innerText = `You: ${userWins}, AI: ${compWins}`;
+
+            if(userWins === 5 || compWins === 5){
+                let finalRes;
+                if(userWins < compWins) finalRes = 'You Lost!';
+                else finalRes = 'You Won!'
+                score.innerText += `\nFINAL RESULT: ${finalRes}`;
+            }
+        } 
+    })
+})  
+
 function getComputerChoice(){
     let getRandomChoice = Math.floor((Math.random() * 3)) + 1;
     if(getRandomChoice === 1){
@@ -48,37 +77,3 @@ function playRound(playerSelection, computerSelection){
         return "Sorry! Wrong input... Must be Rock, Paper or Scissors!";
     }
 }
-
-function game(){
-    for(let i = 0; i < 5; i++){
-        const playerSelection = prompt("Choose", "Rock/Paper/Scissors").toLocaleLowerCase();
-        const computerSelection = getComputerChoice();
-        console.log(`Your choice: ${playerSelection}`);
-        console.log(`Computer choice: ${computerSelection}`);
-        console.log(playRound(playerSelection, computerSelection));
-        console.log(`=====================================`);
-    }
-    console.log("FINAL RESULT: ");
-    if(userWins === compWins){
-        console.log(`TIE!`);
-    }
-    else if(userWins < compWins){
-        console.log(`YOU LOST!`)
-    }
-    else{
-        console.log(`YOU WON!`)
-    }
-    console.log(`user: ${userWins}, computer: ${compWins}.`)
-}
-
-let userWins = 0;
-let compWins = 0;
-
-game();
-
-
-
-
-
-
-
